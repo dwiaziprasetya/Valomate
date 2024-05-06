@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -24,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.toColorInt
 import com.example.valomate.R
+import com.example.valomate.ui.component.CardAgent
 import com.example.valomate.ui.theme.ValomateTheme
 import com.example.valomate.ui.theme.tungstenFamily
 
@@ -39,9 +41,19 @@ fun ValomateApp(){
                 title = {},
                 navigationIcon = {
                     Icon(
-                        modifier = Modifier.padding(start = 16.dp),
+                        modifier = Modifier
+                            .padding(start = 16.dp),
                         imageVector = Icons.Default.Menu,
                         contentDescription = "Menu",
+                        tint = Color.White
+                    )
+                },
+                actions = {
+                    Icon(
+                        modifier = Modifier
+                            .padding(end = 16.dp),
+                        painter = painterResource(R.drawable.notification_icon),
+                        contentDescription = "Notifications",
                         tint = Color.White
                     )
                 }
@@ -55,7 +67,6 @@ fun ValomateApp(){
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                modifier = Modifier.padding(top = 16.dp),
                 painter = painterResource(R.drawable.valorant_logo),
                 contentDescription = "Logo"
             )
@@ -78,6 +89,14 @@ fun ValomateApp(){
                     fontSize = 40.sp,
                     fontFamily = tungstenFamily
                 )
+            }
+            LazyRow(
+                modifier = Modifier
+                    .padding(top = 64.dp),
+            ) {
+                items(6) {
+                    CardAgent()
+                }
             }
         }
     }
