@@ -50,7 +50,10 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.runtime.livedata)
+    implementation(libs.coil.compose)
     implementation(libs.logging.interceptor)
+    implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.livedata)
     implementation(libs.retrofit)

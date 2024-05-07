@@ -1,9 +1,7 @@
 package com.example.valomate.ui.component
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
@@ -17,80 +15,66 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.toColorInt
-import com.example.valomate.R
-import com.example.valomate.ui.theme.ValomateTheme
+import coil.compose.AsyncImage
+import com.example.valomate.data.remote.response.DataItem
 import com.example.valomate.ui.theme.tungstenFamily
 
 @Composable
-fun CardAgent(modifier: Modifier = Modifier) {
+fun CardAgent(
+    modifier: Modifier = Modifier,
+    agent: DataItem
+) {
     Box(
-        modifier = Modifier
-            .padding(horizontal = 32.dp)
+        modifier = modifier
             .background(
                 brush = Brush.linearGradient(
                     colors = listOf(
-                        Color("#c7f458ff".toColorInt()),
-                        Color("#d56324ff".toColorInt()),
-                        Color("#3a2656ff".toColorInt()),
-                        Color("#3a7233ff".toColorInt()),
+                        Color("#${agent.backgroundGradientColors[0]}".toColorInt()),
+                        Color("#${agent.backgroundGradientColors[1]}".toColorInt()),
+                        Color("#${agent.backgroundGradientColors[2]}".toColorInt()),
                     )
                 ),
-                shape = RoundedCornerShape(10.dp)
+                shape = RoundedCornerShape(20.dp)
             )
             .width(200.dp)
             .wrapContentHeight()
     ) {
-        Image(
-            painter = painterResource(R.drawable.gecko),
+        AsyncImage(
+            model = agent.fullPortrait,
             contentDescription = "Model",
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .height(300.dp)
-                .offset(y = (-75).dp) // Menggeser posisi gambar ke atas
+                .offset(y = (-50).dp)
         )
-        Column(
+        Text(
+            text = agent.displayName,
+            color = Color.White,
+            fontWeight = FontWeight.Bold,
+            fontFamily = tungstenFamily,
+            fontSize = 40.sp,
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .background(
-                    color = Color.Transparent,
-                    shape = RoundedCornerShape(10.dp)
-                )
-                .padding(vertical = 16.dp)
-        ) {
-            Text(
-                text = "Gecko",
-                color = Color.White,
-                fontWeight = FontWeight.Bold,
-                fontFamily = tungstenFamily,
-                fontSize = 40.sp,
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-            )
-            Text(
-                text = "Initiator",
-                color = Color.White,
-                fontFamily = tungstenFamily,
-                fontSize = 20.sp,
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-            )
-        }
+                .padding(bottom = 8.dp)
+        )
     }
 }
 
 
-@Preview(
-    showBackground = true,
-)
-@Composable
-private fun CardAgentPreview() {
-    ValomateTheme(dynamicColor = false) {
-        CardAgent()
-    }
-}
+//@Preview(
+//    showBackground = true,
+//)
+//@Composable
+//private fun CardAgentPreview() {
+//    ValomateTheme(dynamicColor = false) {
+//        CardAgent(
+//            image = "",
+//            name = "Gecko",
+//            role = "Initiator",
+//        )
+//    }
+//}

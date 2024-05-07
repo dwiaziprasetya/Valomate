@@ -1,6 +1,7 @@
 package com.example.valomate.ui.component
 
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -61,6 +62,7 @@ fun BottomNavigation(
                     if (isSelected) {
                         Icon(
                             painter = item.iconActive,
+                            modifier = Modifier.size(30.dp),
                             contentDescription = item.title,
                             tint = Color("#FF5252".toColorInt())
                         )
