@@ -56,7 +56,7 @@ fun CardAgent(
             color = Color.White,
             fontWeight = FontWeight.Bold,
             fontFamily = tungstenFamily,
-            fontSize = 40.sp,
+            fontSize = 35.sp,
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(bottom = 8.dp)

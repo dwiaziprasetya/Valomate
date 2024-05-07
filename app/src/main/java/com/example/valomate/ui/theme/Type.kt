@@ -42,3 +42,15 @@ val tungstenFamily = FontFamily(
     Font(R.font.tungstenmedium, FontWeight.Medium),
     Font(R.font.tungstenlight, FontWeight.Light),
 )
+
+val poppinsFontFamily = FontFamily(
+    Font(R.font.poppinsblack, FontWeight.Black),
+    Font(R.font.poppinsbold, FontWeight.Bold),
+    Font(R.font.poppinssemibold, FontWeight.SemiBold),
+    Font(R.font.poppinsextrabold, FontWeight.ExtraBold),
+    Font(R.font.poppinsregular, FontWeight.Normal),
+    Font(R.font.poppinsmedium, FontWeight.Medium),
+    Font(R.font.poppinsthin, FontWeight.Thin),
+    Font(R.font.poppinslight, FontWeight.Light),
+    Font(R.font.poppinsextralight, FontWeight.ExtraLight),
+)
