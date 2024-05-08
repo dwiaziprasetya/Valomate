@@ -1,14 +1,19 @@
 package com.example.valomate.ui.screen.home
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -35,7 +40,9 @@ import com.example.valomate.ui.theme.tungstenFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(){
+fun HomeScreen(
+    navigateToDetail: (String) -> Unit
+){
     val viewModel : HomeViewModel = viewModel()
 
     val agents by viewModel.agents.observeAsState()
@@ -89,15 +96,34 @@ fun HomeScreen(){
                     fontFamily = tungstenFamily
                 )
             }
-            LazyRow(
-                modifier = Modifier
-                    .padding(top = 64.dp),
-            ) {
-                items(agents?.data ?: emptyList()) { agent ->
-                    CardAgent(
-                        modifier = Modifier.padding(horizontal = 16.dp),
-                        agent = agent
-                    )
+            if (agents?.data != null) {
+                LazyRow(
+                    modifier = Modifier
+                        .padding(top = 64.dp),
+                ) {
+                    items(agents?.data ?: emptyList()) { agent ->
+                        CardAgent(
+                            agent = agent,
+                            modifier = Modifier
+                                .padding(horizontal = 16.dp)
+                                .clickable {
+                                    navigateToDetail(agent.uuid)
+                                },
+                        )
+                    }
+                }
+            } else {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(320.dp)
+                ) {
+                    Box(modifier = Modifier.fillMaxSize()){
+                        CircularProgressIndicator(
+                            modifier = Modifier.align(Alignment.Center),
+                            color = Color("#FF5252".toColorInt())
+                        )
+                    }
                 }
             }
         }
@@ -108,6 +134,6 @@ fun HomeScreen(){
 @Composable
 private fun HomeScreenPreview() {
     ValomateTheme(dynamicColor = false) {
-        HomeScreen()
+        HomeScreen{}
     }
 }

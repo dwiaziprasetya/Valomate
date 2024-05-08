@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.valomate.ui.component.CardAgent
 import com.example.valomate.ui.theme.ValomateTheme
-import com.example.valomate.ui.theme.tungstenFamily
+import com.example.valomate.ui.theme.poppinsFontFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -40,8 +40,8 @@ fun AgentsScreen(){
                         text = "Agents",
                         color = Color.White,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 30.sp,
-                        fontFamily = tungstenFamily,
+                        fontSize = 24.sp,
+                        fontFamily = poppinsFontFamily,
                     )
                 }
             )
@@ -68,7 +68,7 @@ fun AgentsScreen(){
 @Preview
 @Composable
 private fun AgentsScreenPreview() {
-    ValomateTheme {
+    ValomateTheme(dynamicColor = false) {
         AgentsScreen()
     }
 }
