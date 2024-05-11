@@ -30,7 +30,7 @@ fun BottomNavigation(
     NavigationBar(
         containerColor = MaterialTheme.colorScheme.background,
         modifier = Modifier
-            .height(75.dp)
+            .height(60.dp)
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route

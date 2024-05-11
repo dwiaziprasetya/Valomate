@@ -9,8 +9,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.CircularProgressIndicator
@@ -26,8 +29,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -35,7 +41,9 @@ import androidx.core.graphics.toColorInt
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.valomate.R
 import com.example.valomate.ui.component.CardAgent
+import com.example.valomate.ui.component.CardAgentTwo
 import com.example.valomate.ui.theme.ValomateTheme
+import com.example.valomate.ui.theme.poppinsFontFamily
 import com.example.valomate.ui.theme.tungstenFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -69,7 +77,12 @@ fun HomeScreen(
         Column(
             modifier = Modifier
                 .padding(innerPadding)
-                .fillMaxSize(),
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .paint(
+                    painter = painterResource(R.drawable.backgorund),
+                    contentScale = ContentScale.FillBounds
+                ),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
@@ -102,14 +115,16 @@ fun HomeScreen(
                         .padding(top = 64.dp),
                 ) {
                     items(agents?.data ?: emptyList()) { agent ->
-                        CardAgent(
-                            agent = agent,
-                            modifier = Modifier
-                                .padding(horizontal = 16.dp)
-                                .clickable {
-                                    navigateToDetail(agent.uuid)
-                                },
-                        )
+                        if (agent.isPlayableCharacter){
+                            CardAgent(
+                                agent = agent,
+                                modifier = Modifier
+                                    .padding(horizontal = 16.dp)
+                                    .clickable {
+                                        navigateToDetail(agent.uuid)
+                                    },
+                            )
+                        }
                     }
                 }
             } else {
@@ -124,6 +139,44 @@ fun HomeScreen(
                             color = Color("#FF5252".toColorInt())
                         )
                     }
+                }
+            }
+            Text(
+                text = "More Agents",
+                color = Color.White,
+                fontSize = 20.sp,
+                fontFamily = poppinsFontFamily,
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier
+                    .padding(top = 16.dp, start = 16.dp)
+                    .align(Alignment.Start)
+            )
+            if (agents != null) {
+                LazyColumn(
+                    modifier = Modifier
+                        .padding(top = 16.dp)
+                        .height(330.dp)
+                ) {
+                    items(agents?.data ?: emptyList()){ agents ->
+                        if (agents.isPlayableCharacter){
+                            CardAgentTwo(
+                                agents = agents,
+                                modifier = Modifier
+                                    .clickable {
+                                        navigateToDetail(agents.uuid)
+                                    }
+                            )
+                        }
+                    }
+                }
+            } else {
+                Box(modifier = Modifier.fillMaxSize()){
+                    CircularProgressIndicator(
+                        modifier = Modifier
+                            .align(Alignment.Center)
+                            .padding(top = 16.dp),
+                        color = Color("#FF5252".toColorInt())
+                    )
                 }
             }
         }

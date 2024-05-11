@@ -25,9 +25,11 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -35,6 +37,7 @@ import androidx.compose.ui.unit.sp
 import androidx.core.graphics.toColorInt
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
+import com.example.valomate.R
 import com.example.valomate.helper.ViewModelFactory
 import com.example.valomate.ui.theme.ValomateTheme
 import com.example.valomate.ui.theme.poppinsFontFamily
@@ -90,7 +93,14 @@ fun DetailScreen(
             )
         }
     ) {
-        Column(modifier = Modifier.padding(it)) {
+        Column(
+            modifier = Modifier
+                .padding(it)
+                .paint(
+                    painter = painterResource(R.drawable.backgorund),
+                    contentScale = ContentScale.FillBounds
+                )
+        ) {
             if (agent?.data != null){
                 Box(modifier = Modifier.align(Alignment.CenterHorizontally)){
                     AsyncImage(

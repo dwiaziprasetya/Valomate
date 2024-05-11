@@ -27,6 +27,7 @@ import com.example.valomate.ui.theme.ValomateTheme
 fun ValomateApp(
     navController: NavHostController = rememberNavController()
 ){
+
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
@@ -50,7 +51,11 @@ fun ValomateApp(
                 )
             }
             composable(route = Screen.Agents.route){
-                AgentsScreen()
+                AgentsScreen(
+                    navigateToDetail = { uuid ->
+                        navController.navigate(Screen.DetailAgent.createRoute(uuid))
+                    }
+                )
             }
             composable(route = Screen.About.route){
                 AboutScreen()
@@ -60,7 +65,7 @@ fun ValomateApp(
                 arguments = listOf(navArgument("agentsId") { type = NavType.StringType })
             ){
                 val uuid = it.arguments?.getString("agentsId") ?: ""
-                DetailScreen(
+                DetailScreen (
                     uuid = uuid,
                     onBackClick = {
                         navController.navigateUp()
