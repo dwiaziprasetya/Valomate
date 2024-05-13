@@ -85,13 +85,15 @@ fun AgentsScreen(
                 verticalArrangement = Arrangement.spacedBy(24.dp)
             ) {
                 items(agents?.data ?: emptyList()) { agent ->
-                    CardAgent(
-                        agent = agent,
-                        modifier = Modifier
-                            .clickable {
-                                navigateToDetail(agent.uuid)
-                            }
-                    )
+                    if(agent.isPlayableCharacter){
+                        CardAgent(
+                            agent = agent,
+                            modifier = Modifier
+                                .clickable {
+                                    navigateToDetail(agent.uuid)
+                                }
+                        )
+                    }
                 }
             }
         } else {

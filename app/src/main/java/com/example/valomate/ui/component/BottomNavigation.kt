@@ -1,12 +1,12 @@
 package com.example.valomate.ui.component
 
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -22,6 +22,7 @@ import com.example.valomate.R
 import com.example.valomate.ui.navigation.NavigationItem
 import com.example.valomate.ui.navigation.Screen
 import com.example.valomate.ui.theme.ValomateTheme
+import com.example.valomate.ui.theme.poppinsFontFamily
 
 @Composable
 fun BottomNavigation(
@@ -30,7 +31,7 @@ fun BottomNavigation(
     NavigationBar(
         containerColor = MaterialTheme.colorScheme.background,
         modifier = Modifier
-            .height(60.dp)
+            .height(78.dp)
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
@@ -57,12 +58,26 @@ fun BottomNavigation(
         navigationItems.map { item ->
             val isSelected = currentRoute == item.screen.route
             NavigationBarItem(
+                label = {
+                    if (isSelected) {
+                        Text(
+                            text = item.title,
+                            fontFamily = poppinsFontFamily,
+                            color = Color("#FF5252".toColorInt())
+                        )
+                    } else {
+                        Text(
+                            text = item.title,
+                            fontFamily = poppinsFontFamily,
+                            color = MaterialTheme.colorScheme.outline
+                        )
+                    }
+                },
                 selected = isSelected,
                 icon = {
                     if (isSelected) {
                         Icon(
                             painter = item.iconActive,
-                            modifier = Modifier.size(30.dp),
                             contentDescription = item.title,
                             tint = Color("#FF5252".toColorInt())
                         )
@@ -70,7 +85,7 @@ fun BottomNavigation(
                         Icon(
                             painter = item.icon,
                             contentDescription = item.title,
-                            tint = Color("#FF5252".toColorInt())
+                            tint = MaterialTheme.colorScheme.outline
                         )
                     }
                 },

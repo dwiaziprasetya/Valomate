@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -141,21 +142,31 @@ fun HomeScreen(
                     }
                 }
             }
-            Text(
-                text = "More Agents",
-                color = Color.White,
-                fontSize = 20.sp,
-                fontFamily = poppinsFontFamily,
-                fontWeight = FontWeight.SemiBold,
+            Row(
                 modifier = Modifier
-                    .padding(top = 16.dp, start = 16.dp)
-                    .align(Alignment.Start)
-            )
+                    .padding(start = 16.dp, top = 16.dp)
+                    .align(Alignment.Start),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Icon(
+                    modifier = Modifier.size(30.dp),
+                    painter = painterResource(R.drawable.valorant_logo),
+                    contentDescription = "logo",
+                    tint = Color("#FF5252".toColorInt())
+                )
+                Text(
+                    text = "More Agents",
+                    color = Color.White,
+                    fontSize = 20.sp,
+                    modifier = Modifier.padding(start = 8.dp),
+                    fontFamily = poppinsFontFamily,
+                    fontWeight = FontWeight.SemiBold,
+                )
+            }
             if (agents != null) {
                 LazyColumn(
                     modifier = Modifier
-                        .padding(top = 16.dp)
-                        .height(330.dp)
+                        .height(300.dp)
                 ) {
                     items(agents?.data ?: emptyList()){ agents ->
                         if (agents.isPlayableCharacter){
