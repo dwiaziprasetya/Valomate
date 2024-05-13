@@ -91,7 +91,7 @@ fun HomeScreen(
                 contentDescription = "Logo"
             )
             Text(
-                fontSize = 40.sp,
+                fontSize = 39.sp,
                 text = "Choose Your",
                 color = Color.White,
                 fontFamily = tungstenFamily
