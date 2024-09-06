@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Valomate.MySplash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#0E1822</item>
+        <item name="postSplashScreenTheme">@style/Theme.Valomate</item>
+    </style>
+</resources>

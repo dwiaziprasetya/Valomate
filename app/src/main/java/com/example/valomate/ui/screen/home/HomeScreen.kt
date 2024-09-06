@@ -9,8 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -34,7 +32,6 @@ import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -42,9 +39,7 @@ import androidx.core.graphics.toColorInt
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.valomate.R
 import com.example.valomate.ui.component.CardAgent
-import com.example.valomate.ui.component.CardAgentTwo
 import com.example.valomate.ui.theme.ValomateTheme
-import com.example.valomate.ui.theme.poppinsFontFamily
 import com.example.valomate.ui.theme.tungstenFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -96,7 +91,7 @@ fun HomeScreen(
                 color = Color.White,
                 fontFamily = tungstenFamily
             )
-            Row {
+            Row(modifier = Modifier.padding(bottom = 24.dp)) {
                 Text(
                     text = "Favourite ",
                     color = Color.White,
@@ -140,54 +135,6 @@ fun HomeScreen(
                             color = Color("#FF5252".toColorInt())
                         )
                     }
-                }
-            }
-            Row(
-                modifier = Modifier
-                    .padding(start = 16.dp, top = 16.dp)
-                    .align(Alignment.Start),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Icon(
-                    modifier = Modifier.size(30.dp),
-                    painter = painterResource(R.drawable.valorant_logo),
-                    contentDescription = "logo",
-                    tint = Color("#FF5252".toColorInt())
-                )
-                Text(
-                    text = "More Agents",
-                    color = Color.White,
-                    fontSize = 20.sp,
-                    modifier = Modifier.padding(start = 8.dp),
-                    fontFamily = poppinsFontFamily,
-                    fontWeight = FontWeight.SemiBold,
-                )
-            }
-            if (agents != null) {
-                LazyColumn(
-                    modifier = Modifier
-                        .height(300.dp)
-                ) {
-                    items(agents?.data ?: emptyList()){ agents ->
-                        if (agents.isPlayableCharacter){
-                            CardAgentTwo(
-                                agents = agents,
-                                modifier = Modifier
-                                    .clickable {
-                                        navigateToDetail(agents.uuid)
-                                    }
-                            )
-                        }
-                    }
-                }
-            } else {
-                Box(modifier = Modifier.fillMaxSize()){
-                    CircularProgressIndicator(
-                        modifier = Modifier
-                            .align(Alignment.Center)
-                            .padding(top = 16.dp),
-                        color = Color("#FF5252".toColorInt())
-                    )
                 }
             }
         }
