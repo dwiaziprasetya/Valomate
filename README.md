@@ -1,4 +1,4 @@
-<h1>VALOMATE 📌</h1>
+<h1>VALOMATE APP📌</h1>
 
 <p>Valomate is an Android app that allows
  users to view all agents in the Valorant
