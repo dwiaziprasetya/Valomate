@@ -48,12 +48,6 @@ fun BottomNavigation(
                 iconActive = painterResource(R.drawable.swordfilled),
                 screen = Screen.Agents
             ),
-            NavigationItem(
-                title = "About",
-                icon = painterResource(R.drawable.accountcircleoutlined),
-                iconActive = painterResource(R.drawable.accountcirclefilled),
-                screen = Screen.About
-            ),
         )
         navigationItems.map { item ->
             val isSelected = currentRoute == item.screen.route
