@@ -16,7 +16,6 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.valomate.ui.component.BottomNavigation
 import com.example.valomate.ui.navigation.Screen
-import com.example.valomate.ui.screen.about.AboutScreen
 import com.example.valomate.ui.screen.agents.AgentsScreen
 import com.example.valomate.ui.screen.detail.DetailScreen
 import com.example.valomate.ui.screen.home.HomeScreen
@@ -56,9 +55,6 @@ fun ValomateApp(
                         navController.navigate(Screen.DetailAgent.createRoute(uuid))
                     }
                 )
-            }
-            composable(route = Screen.About.route){
-                AboutScreen()
             }
             composable(
                 route = Screen.DetailAgent.route,
