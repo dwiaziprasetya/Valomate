@@ -69,9 +69,7 @@ fun DetailScreen(
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.background
                 ),
-                title = {
-
-                },
+                title = {},
                 navigationIcon = {
                     Icon(
                         modifier = Modifier
