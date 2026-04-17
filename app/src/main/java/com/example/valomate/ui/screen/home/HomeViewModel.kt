@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.valomate.data.remote.response.AgentsResponse
-import com.example.valomate.repository.AgentsRepository
+import com.example.valomate.data.repository.AgentsRepository
 import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {

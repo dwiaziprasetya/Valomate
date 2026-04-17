@@ -1,4 +1,4 @@
-package com.example.valomate.repository
+package com.example.valomate.data.repository
 
 import com.example.valomate.data.remote.response.AgentsDetailResponse
 import com.example.valomate.data.remote.response.AgentsResponse
