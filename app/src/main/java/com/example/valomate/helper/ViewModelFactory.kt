@@ -2,7 +2,7 @@ package com.example.valomate.helper
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.valomate.ui.screen.detail.DetailViewModel
+import com.example.valomate.ui.detail.DetailViewModel
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory(private val uuid: String): ViewModelProvider.NewInstanceFactory() {

@@ -1,4 +1,4 @@
-package com.example.valomate.ui.screen.home
+package com.example.valomate.ui.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

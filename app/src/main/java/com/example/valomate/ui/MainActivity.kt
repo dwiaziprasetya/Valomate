@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.example.valomate.ui.newdetailscreen.NewDetailScreen
 import com.example.valomate.ui.theme.ValomateTheme
 
 class MainActivity : ComponentActivity() {
@@ -12,7 +13,7 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         setContent {
             ValomateTheme(dynamicColor = false) {
-                ValomateApp()
+                NewDetailScreen()
             }
         }
     }

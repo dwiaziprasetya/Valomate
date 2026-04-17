@@ -1,4 +1,4 @@
-package com.example.valomate.ui.screen.detail
+package com.example.valomate.ui.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
